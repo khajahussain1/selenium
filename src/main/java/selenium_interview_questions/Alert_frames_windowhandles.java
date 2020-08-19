@@ -36,7 +36,7 @@ public class Alert_frames_windowhandles {
     1. Web-based alert pop-ups
     2. Windows-based alert pop-ups
 *
-* Web-based popup alerts examples:- 
+* Windows-based popup alerts examples:- 
 *   1. Windows authentication popup
     2. Windows security popup
      

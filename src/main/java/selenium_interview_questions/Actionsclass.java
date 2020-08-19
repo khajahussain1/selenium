@@ -53,7 +53,7 @@ public class Actionsclass {
 		
 		a2.sendKeys(Keys.ENTER);
 		a2.sendKeys(Keys.F6);
-		
+		driver.findElement(By.xpath("")).sendKeys(Keys.ENTER);
 		//how to perform Right-click in Selenium
 		//method-1
 		a2.contextClick(element).build().perform();

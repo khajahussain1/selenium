@@ -68,11 +68,7 @@ public class A3 {
 		List<WebElement> links = driver.findElements(By.tagName("a"));
 		for (int i = 0; i < links.size(); i++) {
 
-			WebElement element = links.get(i);
-
-			String url = element.getAttribute("href");
-
-			System.out.println(element.getAttribute("href"));
+			String url = links.get(i).getAttribute("href");
 
 			URL linkurl = new URL(url);
 
