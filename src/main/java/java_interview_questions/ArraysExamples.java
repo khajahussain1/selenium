@@ -1,11 +1,6 @@
 package java_interview_questions;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.Map.Entry;
 
 import org.testng.annotations.Test;
@@ -37,7 +32,288 @@ public class ArraysExamples {
 			
 		}
 	}
-	
+
+	//swipe_first_and_last_words i string
+	//ex: "we working for capgemini" convert to "capgemini working for we"
+	@Test
+	public static void swipe_first_and_last_words(){
+		//"we working for capgemini" convert to "capgemini working for we"
+		String str = "we working for capgemini";
+
+		String a[]=str.split(" ");
+		String temp = a[0];
+
+		a[0]=a[a.length-1];
+		a[a.length-1]=temp;
+
+		for(String s: a)
+		{
+			System.out.print(s+" ");
+		}
+	}
+
+	//swipe_second_and_third_words_and_chances
+	//ex: "we working for capgemini" convert to "we for working capgemini"
+	@Test
+	public static void swipe_second_and_third_words_and_chances() {
+		String str = "we working for capgemini";
+		String a[] = str.split(" ");
+		String temp = a[1];
+		a[1] = a[a.length - 2];
+		a[a.length - 2] = temp;
+
+		for (String s : a) {
+			System.out.print(s + " ");
+		}
+	}
+		@Test
+		public static void maximum_length_world_polymdrom_M1()
+		{
+			String str = "My madam name is Geetha and she knows malayalam";
+			Set<String> hs=new HashSet<>();
+			String s[]=str.split(" ");
+			for(int i=0; i<s.length; i++)
+			{
+				//System.out.print(s[i]+" ");
+				String a[]=s[i].split("");
+				String rev="";
+				for(int j=a.length-1; j>=0; j--)
+				{
+					rev=rev+a[j];
+				}
+				if(rev.equals(s[i]))
+				{
+					//System.out.print(rev);
+					hs.add(rev);
+				}
+			}
+
+			String biggest="";
+			for(String value: hs)
+			{
+				if(biggest==""||biggest.length()<value.length())
+				{
+					biggest=value;
+				}
+			}
+			System.out.println(biggest);
+
+		}
+
+
+
+	@Test
+	public static void minimum_length_world_polyndrom()
+	{
+		String str = "My madam name is Geetha and she knows malayalam";
+		Set<String> hs=new HashSet<>();
+		String s[]=str.split(" ");
+		for(int i=0; i<s.length; i++)
+		{
+			//System.out.print(s[i]+" ");
+			String a[]=s[i].split("");
+			String rev="";
+			for(int j=a.length-1; j>=0; j--)
+			{
+				rev=rev+a[j];
+			}
+			if(rev.equals(s[i]))
+			{
+				//System.out.print(rev);
+				hs.add(rev);
+			}
+		}
+
+		String smallest="";
+		for(String value: hs)
+		{
+			if(smallest==""||smallest.length()>value.length())
+			{
+				smallest=value;
+			}
+		}
+		System.out.println(smallest);
+
+	}
+
+	@Test
+	public static void biggest_length_word_in_array()
+	{
+		String a[] = {"my", "madam", "Geetha", "malayalam"};
+
+		String biggest=a[0];
+		for(String value: a)
+		{
+			if(biggest.length()<value.length())
+			{
+				biggest=value;
+			}
+		}
+
+		System.out.println(biggest);
+	}
+
+	@Test
+	public static void smallest_length_word_in_array()
+	{
+		String a[] = {"my", "madam", "Geetha", "malayalam"};
+
+		String smallest=a[0];
+		for(String value: a)
+		{
+			if(smallest.length()>value.length())
+			{
+				smallest=value;
+			}
+		}
+
+		System.out.println(smallest);
+	}
+
+	@Test
+	public static void reverse_characters_in_word_except_one_word(){
+		String str = "hello world capgemini tech";
+		String s[]=str.split(" ");
+		for(int i=0; i<s.length; i++)
+		{
+			if(s[i].equals("capgemini"))
+			{
+				System.out.print(s[i]+" ");
+			}else{
+				String a[]=s[i].split("");
+				for(int j=a.length-1; j>=0; j--)
+				{
+					System.out.print(a[j]);
+				}
+				System.out.print(" ");
+			}
+		}
+
+	}
+
+	@Test
+	public static void swap_two_numbers(){
+		int x=10;
+		int y=20;
+
+		x=x+y;
+		y=x-y;
+		x=x-y;
+
+		System.out.println("X = "+x);
+		System.out.println("Y = "+y);
+	}
+
+	@Test
+	public static void swap_two_Strings(){
+		String x= "khaja";
+		String y="hussain";
+
+		x=x+y;
+		y=x.substring(0, (x.length()-y.length()));
+		x=x.substring(y.length());
+
+		System.out.println("X = "+x);
+		System.out.println("Y = "+y);
+	}
+
+	@Test
+	public static void remove_duplicates_from_asscending_order()
+	{
+		String a[]={"hello", "world", "capgemini", "hello", "world"};
+		Set<String> hs=new TreeSet<>(Arrays.asList(a));
+
+		for(String s: hs)
+		{
+			System.out.print(s+" ");
+
+		}
+
+	}
+
+	//Method-1
+	@Test
+	public void remove_duplicates_vowels_M1()
+	{
+		String s = "MoOntttuaaAAday";
+		Set<Character> vowels=new HashSet<>();
+		StringBuilder result=new StringBuilder();
+
+		for(char ch: s.toCharArray())
+		{
+			char lower = Character.toLowerCase(ch);
+
+			if("aeiou".indexOf(lower)!=-1)
+			{
+				if(vowels.contains(lower))
+				{
+					continue;
+				}
+				vowels.add(lower);
+			}
+			result.append(lower);
+		}
+		System.out.println(result);
+
+	}
+
+	//Method-2
+	@Test
+	public static void remove_duplicates_vowels_M2() {
+
+		String s = "MoOntttuaaAAday";
+		Map<Character, Integer> vowels=new HashMap<>();
+		StringBuilder result=new StringBuilder();
+
+		for(char ch: s.toCharArray())
+		{
+			char lower=Character.toLowerCase(ch);
+			if("aeiou".indexOf(lower)!=-1)
+			{
+				vowels.put(lower, vowels.getOrDefault(lower, 0)+1);
+				if(vowels.get(lower)==1)
+				{
+					result.append(ch);
+				}
+			}else{
+				result.append(ch);
+			}
+		}
+		System.out.println(result);
+	}
+
+	//Method-1
+	@Test
+	public static void remove_duplicates_consonents_M1()
+	{
+		String s = "MoOntttuaaAAday";
+		Map<Character, Integer> consonent=new HashMap<>();
+		StringBuilder result=new StringBuilder();
+
+		for(char ch: s.toCharArray())
+		{
+			char lower = Character.toLowerCase(ch);
+
+			if("aeiou".indexOf(lower)==-1 && Character.isLetter(lower))
+			{
+				consonent.put(lower, consonent.getOrDefault(lower, 0)+1);
+
+				if(consonent.get(lower)==1)
+				{
+					result.append(lower);
+				}
+			}else{
+				result.append(lower);
+			}
+		}
+		System.out.println(result);
+	}
+
+	@Test
+	public static void vowels_count()
+	{
+
+	}
 	
 	@Test
 	public static void polymdrom_string() {

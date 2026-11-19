@@ -13,7 +13,15 @@ import org.testng.annotations.Test;
   1)  How garbage collector knows that the object is not in use and needs to be removed?
    Ans:- Garbage collector reclaims objects that are no longer being used, clears their memory, and keeps the memory 
       available for future allocations. This is done via bookkeeping the references to the objects. Any unreferenced 
-      object is a garbage and will be collected. 
+      object is a garbage and will be collected.
+
+      what is the difference between smoke testing and sanity testing
+
+      Smoke Testing: Checks whether the main functions of the application work after a new build.
+      Usually done on every new build.
+
+      Sanity Testing: Checks whether a specific bug fix or change works correctly.
+      Done when specific functionality is modified.
       
   2)  Can Java thread object invoke start method twice?
    Ans:- No, it throws IllegalThreadStateException

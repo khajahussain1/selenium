@@ -5,18 +5,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.openxml4j.opc.OPCPackage;
 import org.apache.poi.xwpf.extractor.XWPFWordExtractor;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 import org.testng.annotations.Test;
+
+import static java.util.Arrays.*;
 
 public class ArrayList_Maintains {
 
@@ -53,6 +51,33 @@ public class ArrayList_Maintains {
 	}
 
 	//@Test
+	public void print_duplecate_strings_in_ArrayList() {
+		List<String> al = new ArrayList<>();
+		al.add("hello");
+		al.add("World");
+		al.add("Khaja");
+		al.add("World");
+		al.add("Khaja");
+		al.add("Hussain");
+
+		Set<String> uniq=new HashSet<>();
+		Set<String> duplicate=new HashSet<>();
+
+		for(String s: al)
+		{
+			if(!uniq.add(s))
+			{
+				duplicate.add(s);
+			}
+		}
+
+		for(String i: duplicate)
+		{
+			System.out.println(i+"-->"+Collections.frequency(al, i));
+		}
+	}
+
+	//@Test
 	public void count_duplecate_strings_in_ArrayList() {
 		
 		ArrayList<String> al = new ArrayList<String>();
@@ -76,6 +101,52 @@ public class ArrayList_Maintains {
 		   XWPFDocument xdoc = new XWPFDocument(OPCPackage.open(fis));
 		   XWPFWordExtractor extractor = new XWPFWordExtractor(xdoc);
 		   System.out.println(extractor.getText());
+	}
+
+	//@Test
+	public void convert_decimal_to_binary()
+	{
+		int decimal = 12;
+		StringBuilder binary = new StringBuilder();
+
+		while(decimal>0)
+		{
+			int remainder = decimal%2;
+			binary.append(remainder);
+			decimal=decimal/2;
+		}
+		System.out.println(binary.toString());
+	}
+
+	//@Test
+//	import java.util.*;
+//    import java.util.stream.Collectors;
+	public void move_charecter_from_first_to_last()
+	{
+		String str = "Mahatma Gandhi";
+		Scanner sc = new Scanner(System.in);
+
+		while (true) {
+			System.out.println("Press Enter to shift:");
+			sc.nextLine();
+
+			str = Arrays.stream(str.split(" "))
+					.map(Main::shiftDigit)
+					.collect(Collectors.joining(" "));
+
+			System.out.println(str);
+		}
+
+	}
+	public static String shiftDigit(String str) {
+		return str.substring(1) + str.substring(0, 1);
+	}
+
+	//print character only remove special characters and numarics
+	//@Test
+	public void print_only_characters_remove_remaining_method1() throws IOException {
+
+
 	}
 	
 	//@Test
