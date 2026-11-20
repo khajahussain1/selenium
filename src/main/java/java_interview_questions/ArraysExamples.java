@@ -312,7 +312,59 @@ public class ArraysExamples {
 	@Test
 	public static void vowels_count()
 	{
+		String s = "MoOntttuaaAAday";
 
+		int vowelscount=0;
+		for(char ch: s.toCharArray())
+		{
+			char lower =Character.toLowerCase(ch);
+			if("aeiou".indexOf(lower)!=-1)
+			{
+				vowelscount++;
+			}
+		}
+		System.out.println(vowelscount);
+	}
+
+	@Test
+	public static void consonent_count()
+	{
+		String s = "MoOntttuaaAAday";
+
+		int consonentcount=0;
+		for(char ch: s.toCharArray())
+		{
+			char lower =Character.toLowerCase(ch);
+			if("aeiou".indexOf(lower)==-1&&Character.isLetter(ch))
+			{
+				consonentcount++;
+			}
+		}
+		System.out.println(consonentcount);
+	}
+
+	@Test
+	public static void count()
+	{
+		String s = "KhajaHussain";
+		int uppercase=0;
+		int lowercase=0;
+
+		for(char ch: s.toCharArray())
+		{
+			if(Character.isUpperCase(ch))
+			{
+				uppercase++;
+			}
+
+			if(Character.isLowerCase(ch))
+			{
+				lowercase++;
+			}
+		}
+
+		System.out.println("uppercase = "+uppercase);
+		System.out.println("lowercase = "+lowercase);
 	}
 	
 	@Test
@@ -338,7 +390,7 @@ public class ArraysExamples {
 	}
 	
 	//@Test
-	public void convert_hashmap_Arraylist()
+	public void convert_hashmap_Arraylist_1()
 	{
 		Map<String, String> m = new HashMap<String, String>();
 		m.put("1", "khaja");
@@ -346,6 +398,18 @@ public class ArraysExamples {
 		Set<Entry<String, String>> s = m.entrySet();
 		List<Entry<String, String>> al = new ArrayList<Entry<String, String>>(s);
 		System.out.println(al);
+	}
+
+	//@Test
+	public void convert_hashmap_Arraylist_2()
+	{
+		Map<String, String> hm = new HashMap<>();
+		hm.put("1", "khaja");
+		hm.put("2", "vali");
+
+		List<Map.Entry<String, String>> al=new ArrayList<>(hm.entrySet());
+
+		System.out.print(al);
 	}
 	
 	//@Test
@@ -380,10 +444,8 @@ public class ArraysExamples {
 
 	// @Test
 	public static void sum_of_the_digits() {
-		
 		int n = 325;
 		int sum = 0, r;
-
 		while (n > 0)
 		{
 			r = n % 10;
@@ -391,7 +453,6 @@ public class ArraysExamples {
 			n = n / 10;
 
 		}
-
 		System.out.println("sum of thd digits is " + sum);
 	}
 
@@ -557,6 +618,135 @@ public class ArraysExamples {
 	            }  
 	        }  
 	    
+	}
+
+	//Method-1
+	@Test
+	public void print_duplicate_elements_and_remove_uniq_elements()
+	{
+		List<String> al = new ArrayList<>();
+		al.add("khaja");
+		al.add("hussain");
+		al.add("khaja");
+		al.add("hussain");
+		al.add("poola");
+		al.add("vali");
+		al.add("vali");
+
+		Map<String, Integer> hm= new HashMap<>();
+
+		for(String s: al)
+		{
+			hm.put(s, hm.getOrDefault(s, 0)+1);
+		}
+
+		for(Map.Entry<String, Integer> entry: hm.entrySet())
+		{
+			//print only duplicates "entry.getValue()>1"
+			//print only unq "entry.getValue()==1"
+			//print only uniq and duplicates "entry.getValue()>=1"
+			if(entry.getValue()>1)
+			{
+				System.out.println(entry);
+			}
+		}
+	}
+
+	//Method-2
+	@Test
+	public void print_duplicate_elements_and_remove_uniq_elements2()
+	{
+		Integer a[]  = {1, 2, 3, 4, 2, 7, 8, 8, 3,4,3,4,3,4,5,3,4,5,6,454,3,4,5,6,454};
+
+		List<Integer> al = new ArrayList<>(Arrays.asList(a));
+
+		Set<Integer> uniq=new HashSet<>();
+		Set<Integer> duplicate=new HashSet<>();
+
+		for(Integer i: al)
+		{
+			if(!uniq.add(i))
+			{
+				duplicate.add(i);
+			}
+		}
+
+		for(Integer s: duplicate)
+		{
+			System.out.println(s+"-->"+Collections.frequency(al,s));
+		}
+	}
+
+	//Method-3
+	@Test
+	public void print_duplicate_elements_and_remove_uniq_elements3()
+	{
+		Integer a[]  = {1, 2, 3, 4, 2, 7, 8, 8, 3,4,3,4,3,4,5,3,4,5,6,454,3,4,5,6,454};
+
+		Map<Integer, Integer> hm=new HashMap<>();
+
+		for(Integer i: a)
+		{
+			hm.put(i, hm.getOrDefault(i, 0)+1);
+		}
+
+		for(Map.Entry<Integer, Integer> entry: hm.entrySet())
+		{
+			//System.out.println(entry);
+
+			if(entry.getValue()>1)
+			{
+				System.out.println(entry);
+			}
+		}
+	}
+
+	// @Test
+	public void print_multiple_of_9_values()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter n1");
+		int n1= sc.nextInt();
+
+		System.out.println("Enter n2");
+		int n2= sc.nextInt();
+
+		int sum=n1+n2;
+
+		if(sum%9==0)
+		{
+			System.out.println(sum+" is divided by 9");
+		}else{
+			System.out.println(sum+" is not divided by 9");
+		}
+
+	}
+	// @Test
+	public void print_odd_and_even_numbers()
+	{
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter n");
+		int n= sc.nextInt();
+
+		System.out.print("Even numbers are = ");
+		for(int i=1; i<=n; i++)
+		{
+			if(i%2==0)
+			{
+				System.out.print(i+" ");
+			}
+
+		}
+		System.out.println();
+		System.out.print("Odd numbers are = ");
+		for(int j=1; j<=n; j++)
+		{
+			if(j%2!=0)
+			{
+				System.out.print(j+" ");
+			}
+
+		}
 	}
 
 	// @Test
