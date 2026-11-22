@@ -108,7 +108,6 @@ public class ArrayList_Maintains {
 	{
 		int decimal = 12;
 		StringBuilder binary = new StringBuilder();
-
 		while(decimal>0)
 		{
 			int remainder = decimal%2;
@@ -119,8 +118,6 @@ public class ArrayList_Maintains {
 	}
 
 	//@Test
-//	import java.util.*;
-//    import java.util.stream.Collectors;
 	public void move_charecter_from_first_to_last()
 	{
 		String str = "Mahatma Gandhi";
@@ -144,9 +141,47 @@ public class ArrayList_Maintains {
 
 	//print character only remove special characters and numarics
 	//@Test
-	public void print_only_characters_remove_remaining_method1() throws IOException {
+	public void print_only_characters_remove_remaining_method1() throws IOException
+	{
+		String str = "Wlcome@123#Java2026";
+		String result=str.replaceAll("[^a-zA-Z]", "");
+		System.out.println(result);
+	}
 
+	//@Test
+	public void print_only_characters_remove_remaining_method2() throws IOException
+	{
+		String str = "Welcome@123#Java2026";
 
+		//print only special character remove remaining
+		//if(!Character.isLetterOrDigit(ch))
+
+		//print only digit and remove remaining
+		//if(Character.isDigit(ch))
+
+		for(char ch: str.toCharArray())
+		{
+			if(Character.isLetter(ch))
+			{
+				System.out.print(ch);
+			}
+		}
+	}
+
+	//@Test
+	public void print_only_characters_remove_remaining_method3() throws IOException
+	{
+		String str = "Welcome@123#Java2026";
+		StringBuilder result= new StringBuilder();
+
+		for(char ch: str.toCharArray())
+		{
+			if(Character.isLetter(ch))
+			{
+				result.append(ch);
+			}
+		}
+		System.out.print(result);
 	}
 	
 	//@Test
@@ -176,6 +211,28 @@ public class ArrayList_Maintains {
 		}
 		br.close();
 	}
+
+	// @Test
+	public void BufferedReader() throws IOException {
+	String line = "";
+	Map<String, Integer> hm = new HashMap<>();
+	BufferedReader br=new BufferedReader(new FileReader("file path"));
+	while((line = br.readLine())!=null)
+	{
+		String a[]=line.split(" ");
+		for(String s: a)
+		{
+			hm.put(s, hm.getOrDefault(s, 0) + 1);
+		}
+	}
+
+	for(Map.Entry<String, Integer> entry: hm.entrySet())
+	{
+		System.out.println(entry);
+	}
+	br.close();
+	}
+
 
 	// @Test
 	public void reverse_an_ArrayList() {
